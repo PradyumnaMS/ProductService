@@ -5,7 +5,9 @@ import dev.pradyumna.ProductService.models.Product;
 
 public interface ProductService {
 
-//    Product getProductById(Long id);
+    GenericProductDto createProduct(GenericProductDto product);
+
+    //    Product getProductById(Long id);
 //    String getProductById(Long id);
 //    we dont want to return a fakeStoreProductDto
 //    which is heavily dependent on external API

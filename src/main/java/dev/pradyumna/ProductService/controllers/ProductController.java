@@ -54,10 +54,11 @@ public class ProductController {
     public void deleteProductsById(){
 
     }
-
-    @PostMapping("{id}")
-    public void createProductById(){
-
+//what ever is there in the request body convert it into genericproductdto
+    @PostMapping
+    public GenericProductDto createProduct(@RequestBody GenericProductDto product){
+//        return "Created new product with name " + product.getTitle();
+        return productService.createProduct(product);
     }
 
     @PutMapping("{id}")
