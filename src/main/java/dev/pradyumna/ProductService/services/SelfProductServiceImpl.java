@@ -1,5 +1,6 @@
 package dev.pradyumna.ProductService.services;
 
+import dev.pradyumna.ProductService.dtos.GenericProductDto;
 import dev.pradyumna.ProductService.models.Product;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class SelfProductServiceImpl implements ProductService{
 //    }
 
     @Override
-    public String getProductById(Long id) {
+    public GenericProductDto getProductById(Long id) {
         return null;
     }
 }

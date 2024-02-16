@@ -1,19 +1,14 @@
-package dev.pradyumna.ProductService.models;
+package dev.pradyumna.ProductService.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product extends BaseModel{
+public class GenericProductDto {
     private String title;
+    private double price;
+    private String category;
     private String description;
     private String image;
-    private Category category;
-    private double price;
-
-
-
-
-
 }

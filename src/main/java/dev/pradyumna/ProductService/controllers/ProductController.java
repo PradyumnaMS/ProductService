@@ -1,5 +1,7 @@
 package dev.pradyumna.ProductService.controllers;
 
+import dev.pradyumna.ProductService.dtos.GenericProductDto;
+import dev.pradyumna.ProductService.models.Product;
 import dev.pradyumna.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -43,7 +45,7 @@ public class ProductController {
 //    localhost:8080/api/v1/products/"{Id}"
 
     @GetMapping("/{id}")
-    public String getProductsById(@PathVariable("id") Long id){
+    public GenericProductDto getProductsById(@PathVariable("id") Long id){
 //        return "Here is product id: " + id;
         return productService.getProductById(id);
     }
