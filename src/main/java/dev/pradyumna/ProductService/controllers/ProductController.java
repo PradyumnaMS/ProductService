@@ -1,13 +1,11 @@
 package dev.pradyumna.ProductService.controllers;
 
 import dev.pradyumna.ProductService.dtos.GenericProductDto;
-import dev.pradyumna.ProductService.models.Product;
 import dev.pradyumna.ProductService.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 
 @RestController
@@ -36,9 +34,19 @@ public class ProductController {
 //        this.productService = productService;
 //    }
 
+    // GET /products {}
     @GetMapping
-    public String getAllProducts(){
-        return " This is the product";
+//    public String getAllProducts(){
+    public List<GenericProductDto> getAllProducts(){
+//        return List.of(
+//                new GenericProductDto(),
+//                        new GenericProductDto()
+//        );
+        return productService.getAllProducts();
+
+//        build the request object
+//        call the method
+//        return " This is the product";
     }
 
 //    localhost:8080/products/"{Id}"

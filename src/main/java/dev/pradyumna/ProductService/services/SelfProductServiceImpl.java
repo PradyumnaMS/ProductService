@@ -4,6 +4,8 @@ import dev.pradyumna.ProductService.dtos.GenericProductDto;
 import dev.pradyumna.ProductService.models.Product;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("selfProductServiceImpl")
 //this is one more class of the same type of implementation
 // qualifiers is the solution
@@ -23,4 +25,8 @@ public class SelfProductServiceImpl implements ProductService{
         return null;
     }
 
+    @Override
+    public List<GenericProductDto> getAllProducts() {
+        return null;
+    }
 }

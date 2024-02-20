@@ -1,7 +1,8 @@
 package dev.pradyumna.ProductService.services;
 
 import dev.pradyumna.ProductService.dtos.GenericProductDto;
-import dev.pradyumna.ProductService.models.Product;
+
+import java.util.List;
 
 public interface ProductService {
 
@@ -13,4 +14,6 @@ public interface ProductService {
 //    which is heavily dependent on external API
 //    we want to return a product object( which is you)
     GenericProductDto getProductById(Long id);
+
+    List<GenericProductDto> getAllProducts();
 }

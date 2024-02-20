@@ -7,13 +7,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 @Service("fakeStoreProductService")
 // we are annotating with @service to create instance of the same
 public class FakeStoreProductService implements ProductService{
     private RestTemplateBuilder restTemplateBuilder;
     private String getProductRequestUrl = "https://fakestoreapi.com/products/{id}";
-    private String createProductRequestUrl = "https://fakestoreapi.com/products";
+//    private String createProductRequestUrl = "https://fakestoreapi.com/products";
+
+    private String productRequestBaseUrl = "https://fakestoreapi.com/products";
+
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder){
         this.restTemplateBuilder = restTemplateBuilder;
     }
@@ -26,7 +33,7 @@ public class FakeStoreProductService implements ProductService{
     public GenericProductDto createProduct(GenericProductDto product){
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<GenericProductDto> response =  restTemplate.postForEntity(
-                createProductRequestUrl, product, GenericProductDto.class);
+                productRequestBaseUrl, product, GenericProductDto.class);
         return response.getBody();
     }
 
@@ -54,6 +61,37 @@ public class FakeStoreProductService implements ProductService{
 
 //        return "Here is product id: " + id;
         return product;
+    }
+
+    @Override
+    public List<GenericProductDto> getAllProducts() {
+        RestTemplate restTemplate=restTemplateBuilder.build();
+//        for the below code
+//        because of generics, where at run time it will take ArrayList.class
+//        which cant convert it into JSON
+//        ResponseEntity<List<FakeStoreProductDto>> response =
+//                restTemplate.getForEntity(productRequestBaseUrl, ArrayList<FakeStoreProductDto.class>);
+        ResponseEntity<FakeStoreProductDto[]> response =
+                restTemplate.getForEntity(productRequestBaseUrl, FakeStoreProductDto[].class);
+//        getbody() is the main data type for <List<FakeStoreProductDto>>
+
+//        its expecting a generic product Dto, i'm having a fakeStoreProductDto
+
+        List<GenericProductDto> answer = new ArrayList<>();
+
+        for(FakeStoreProductDto fakeStoreProductDto: Arrays.stream(response.getBody()).toList()) {
+            GenericProductDto product = new GenericProductDto();
+            product.setImage(fakeStoreProductDto.getImage());
+            product.setDescription(fakeStoreProductDto.getDescription());
+            product.setTitle(fakeStoreProductDto.getTitle());
+            product.setPrice(fakeStoreProductDto.getPrice());
+            product.setCategory(fakeStoreProductDto.getCategory());
+
+            answer.add(product);
+        }
+
+//        return response.getBody();
+        return answer;
     }
 }
 
