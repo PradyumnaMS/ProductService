@@ -69,6 +69,11 @@ public class ProductController {
 //        here you are able to set the status code manually.
     }
 //what ever is there in the request body convert it into genericproductdto
+    @ExceptionHandler(NotFoundException.class)
+    private void handleNotFoundException(){
+        System.out.println("Not found exception");
+
+    }
     @PostMapping
     public GenericProductDto createProduct(@RequestBody GenericProductDto product){
 //        return "Created new product with name " + product.getTitle();
