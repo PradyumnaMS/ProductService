@@ -30,19 +30,19 @@ public class FakeStoreProductService implements ProductService{
         this.restTemplateBuilder = restTemplateBuilder;
     }
 
-//    private GenericProductDto
-//    convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto){
+    private GenericProductDto
+    convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto){
 
-//        GenericProductDto product = new GenericProductDto();
-//        product.setId(fakeStoreProductDto.getId());
-//        product.setImage(fakeStoreProductDto.getImage());
-//        product.setDescription(fakeStoreProductDto.getDescription());
-//        product.setTitle(fakeStoreProductDto.getTitle());
-//        product.setPrice(fakeStoreProductDto.getPrice());
-//        product.setCategory(fakeStoreProductDto.getCategory());
+        GenericProductDto product = new GenericProductDto();
+        product.setId(fakeStoreProductDto.getId());
+        product.setImage(fakeStoreProductDto.getImage());
+        product.setDescription(fakeStoreProductDto.getDescription());
+        product.setTitle(fakeStoreProductDto.getTitle());
+        product.setPrice(fakeStoreProductDto.getPrice());
+        product.setCategory(fakeStoreProductDto.getCategory());
 
-//        return product;
-//    }
+        return product;
+    }
 
 
     //    @Override
@@ -73,17 +73,8 @@ public class FakeStoreProductService implements ProductService{
 //        this DTO that I have gotten have to convert into product
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
 
-        GenericProductDto product = new GenericProductDto();
-        product.setId(fakeStoreProductDto.getId());
-        product.setImage(fakeStoreProductDto.getImage());
-        product.setDescription(fakeStoreProductDto.getDescription());
-        product.setTitle(fakeStoreProductDto.getTitle());
-        product.setPrice(fakeStoreProductDto.getPrice());
-        product.setCategory(fakeStoreProductDto.getCategory());
-
 //        return "Here is product id: " + id;
-        return product;
-//        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto);
+        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto);
     }
 
     @Override
@@ -105,14 +96,7 @@ public class FakeStoreProductService implements ProductService{
         for(FakeStoreProductDto fakeStoreProductDto: Arrays.stream(response.getBody()).toList()) {
             GenericProductDto product = new GenericProductDto();
 
-            product.setImage(fakeStoreProductDto.getImage());
-            product.setDescription(fakeStoreProductDto.getDescription());
-            product.setTitle(fakeStoreProductDto.getTitle());
-            product.setPrice(fakeStoreProductDto.getPrice());
-            product.setCategory(fakeStoreProductDto.getCategory());
-
-            answer.add(product);
-//            answer.add(convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto));
+            answer.add(convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto));
         }
 
 //        return response.getBody();
@@ -141,15 +125,8 @@ public class FakeStoreProductService implements ProductService{
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
 
         GenericProductDto product = new GenericProductDto();
-        product.setId(fakeStoreProductDto.getId());
-        product.setImage(fakeStoreProductDto.getImage());
-        product.setDescription(fakeStoreProductDto.getDescription());
-        product.setTitle(fakeStoreProductDto.getTitle());
-        product.setPrice(fakeStoreProductDto.getPrice());
-        product.setCategory(fakeStoreProductDto.getCategory());
 
-        return product;
-//    return convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto);
+    return convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto);
     }
 }
 
