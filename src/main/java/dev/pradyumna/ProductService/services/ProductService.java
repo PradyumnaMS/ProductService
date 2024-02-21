@@ -1,6 +1,7 @@
 package dev.pradyumna.ProductService.services;
 
 import dev.pradyumna.ProductService.dtos.GenericProductDto;
+import dev.pradyumna.ProductService.exceptions.NotFoundException;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface ProductService {
 //    we dont want to return a fakeStoreProductDto
 //    which is heavily dependent on external API
 //    we want to return a product object( which is you)
-    GenericProductDto getProductById(Long id);
+    GenericProductDto getProductById(Long id) throws NotFoundException;
 
     List<GenericProductDto> getAllProducts();
 

@@ -1,6 +1,7 @@
 package dev.pradyumna.ProductService.controllers;
 
 import dev.pradyumna.ProductService.dtos.GenericProductDto;
+import dev.pradyumna.ProductService.exceptions.NotFoundException;
 import dev.pradyumna.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -55,7 +56,7 @@ public class ProductController {
 //    localhost:8080/api/v1/products/"{Id}"
 
     @GetMapping("/{id}")
-    public GenericProductDto getProductsById(@PathVariable("id") Long id){
+    public GenericProductDto getProductsById(@PathVariable("id") Long id) throws NotFoundException {
 //        return "Here is product id: " + id;
         return productService.getProductById(id);
     }

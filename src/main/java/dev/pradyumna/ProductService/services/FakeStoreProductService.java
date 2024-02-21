@@ -2,6 +2,7 @@ package dev.pradyumna.ProductService.services;
 
 import dev.pradyumna.ProductService.dtos.FakeStoreProductDto;
 import dev.pradyumna.ProductService.dtos.GenericProductDto;
+import dev.pradyumna.ProductService.exceptions.NotFoundException;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +60,7 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto getProductById(Long id) {
+    public GenericProductDto getProductById(Long id) throws NotFoundException {
 //        FakeStoreProductService fakeStoreProductService = new FakeStoreProductService();
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response = restTemplate.getForEntity(specificProductRequestUrl, FakeStoreProductDto.class, id);
@@ -72,6 +73,10 @@ public class FakeStoreProductService implements ProductService{
 
 //        this DTO that I have gotten have to convert into product
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
+
+        if(fakeStoreProductDto == null){
+            throw new NotFoundException("Url entered is wrong");
+        }
 
 //        return "Here is product id: " + id;
         return convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto);
