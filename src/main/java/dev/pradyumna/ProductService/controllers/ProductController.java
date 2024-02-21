@@ -3,6 +3,8 @@ package dev.pradyumna.ProductService.controllers;
 import dev.pradyumna.ProductService.dtos.GenericProductDto;
 import dev.pradyumna.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,8 +62,10 @@ public class ProductController {
 
     @DeleteMapping("{id}")
 //    public void deleteProductsById(){
-    public GenericProductDto deleteProductsById(@PathVariable("id") Long id){
-        return productService.deleteProduct(id);
+    public ResponseEntity<GenericProductDto> deleteProductsById(@PathVariable("id") Long id){
+        return new ResponseEntity<>(productService.deleteProduct(id), HttpStatus.OK);
+//        return productService.deleteProduct(id);
+//        here you are able to set the status code manually.
     }
 //what ever is there in the request body convert it into genericproductdto
     @PostMapping
