@@ -59,8 +59,9 @@ public class ProductController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteProductsById(){
-
+//    public void deleteProductsById(){
+    public GenericProductDto deleteProductsById(@PathVariable("id") Long id){
+        return productService.deleteProduct(id);
     }
 //what ever is there in the request body convert it into genericproductdto
     @PostMapping
